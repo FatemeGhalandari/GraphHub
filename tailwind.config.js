@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {

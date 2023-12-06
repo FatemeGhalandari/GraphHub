@@ -1,10 +1,14 @@
+import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-row">
       <Sidebar />
-      <div className="bg-green-300">container</div>
+      <div className="flex-[6]">
+        <Navbar />
+        container
+      </div>
     </div>
   );
 };

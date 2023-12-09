@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         primary: "#000000",
         secondary: "#ffffff",
-        textColor: "#555",
+        navItemColor: "#555",
+        textColor: "#94a3b8",
         borderColor: "rgb(230,227,227)",
         darkGreen: "#166534",
         green: "#16a34a",

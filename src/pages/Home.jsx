@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import Widget from "../components/Widget";
 
 const Home = () => {
   return (
@@ -7,7 +8,12 @@ const Home = () => {
       <Sidebar />
       <div className="flex-[6]">
         <Navbar />
-        container
+        <div className="flex p-5">
+          <Widget type="users" />
+          <Widget type="orders" />
+          <Widget type="earnings" />
+          <Widget type="balance" />
+        </div>
       </div>
     </div>
   );

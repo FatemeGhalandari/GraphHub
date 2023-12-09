@@ -16,6 +16,9 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import ChatIcon from "@mui/icons-material/Chat";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 export {
   DashboardIcon,
   PersonIcon,
@@ -35,4 +38,7 @@ export {
   FullscreenIcon,
   ChatIcon,
   FormatListBulletedIcon,
+  KeyboardArrowUpIcon,
+  MonetizationOnIcon,
+  AccountBalanceWalletIcon,
 };

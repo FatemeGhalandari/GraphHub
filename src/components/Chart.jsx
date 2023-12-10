@@ -19,7 +19,7 @@ const data = [
 const Chart = () => {
   return (
     <div className={`${styles.boxShadow} flex flex-[2] flex-col p-[10px]`}>
-      <div className="flex font-semibold text-navItemColor text-[18px] mb-5">
+      <div className="flex font-semibold text-textColor text-[18px] mb-5">
         Last 6 Months revenue
       </div>
       <ResponsiveContainer width="100%" height="100%" className="p-3">

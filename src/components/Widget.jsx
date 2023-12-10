@@ -5,6 +5,7 @@ import {
   PersonIcon,
   ShoppingCartIcon,
 } from "../components/Icons";
+import PropTypes from "prop-types";
 import styles from "./styles";
 
 const Widget = ({ type }) => {
@@ -57,7 +58,9 @@ const Widget = ({ type }) => {
       break;
   }
   return (
-    <div className="mr-5 flex flex-1 justify-between p-2  shadow-md shadow-slate-200 h-[100px] rounded-lg">
+    <div
+      className={`${styles.boxShadow} flex flex-1 justify-between p-2 rounded-lg h-[100px]`}
+    >
       <div className="flex flex-col justify-between">
         <p className="text-textColor text-[13px] uppercase">{data.title}</p>
         <p className="text-[28px] ">
@@ -78,4 +81,7 @@ const Widget = ({ type }) => {
   );
 };
 
+Widget.propTypes = {
+  type: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+};
 export default Widget;

@@ -4,18 +4,29 @@ import {
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
 } from "./Icons";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 const Featured = () => {
   return (
     <div className={`${styles.boxShadow} flex flex-[1] p-2 flex-col`}>
-      <div className="flex justify-between items-center text-navItemColor">
+      <div className="flex justify-between items-center text-textColor">
         <h2 className="text-[18px] font-semibold">Total revenue</h2>
         <MoreVertIcon />
       </div>
       <div className="flex items-center flex-col justify-center p-5 gap-4">
         <div className="w-[100px] h-[100px]">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
+          <CircularProgressbar
+            value={70}
+            text={"70%"}
+            strokeWidth={5}
+            styles={buildStyles({
+              strokeLinecap: "round",
+              textSize: "18px",
+              pathColor: "green",
+              textColor: "green",
+              trailColor: "navItemColor",
+            })}
+          />
         </div>
         <p className="text-textColor font-semibold text-[18px]">
           Total sales made today

@@ -12,5 +12,7 @@ const styles = {
   navItem: "flex items-center mr-[20px] text-navItemColor",
   notif:
     "bg-[#dc2626] rounded-[50%] text-[10px] text-white w-[15px] h-[15px] flex items-center justify-center top-[0] right-[0] absolute",
+  parent: "flex p-5 gap-5",
+  boxShadow: "shadow-md shadow-slate-200 ",
 };
 export default styles;

@@ -6,7 +6,7 @@ import {
   NotificationsIcon,
   ChatIcon,
   FormatListBulletedIcon,
-} from "../components/Icons";
+} from "./icons";
 import styles from "./styles";
 import avatar from "../assets/avatar.svg";
 

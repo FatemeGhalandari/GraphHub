@@ -11,7 +11,7 @@ import {
   InventoryIcon,
   ShoppingCartIcon,
   PsychologyIcon,
-} from "../components/Icons";
+} from "./icons";
 import styles from "./styles";
 const Sidebar = () => {
   return (

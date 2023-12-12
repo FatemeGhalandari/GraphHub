@@ -4,7 +4,7 @@ import {
   MonetizationOnIcon,
   PersonIcon,
   ShoppingCartIcon,
-} from "../components/Icons";
+} from "../components/icons";
 import PropTypes from "prop-types";
 import styles from "./styles";
 

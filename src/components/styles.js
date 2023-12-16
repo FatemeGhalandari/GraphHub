@@ -14,5 +14,8 @@ const styles = {
     "bg-[#dc2626] rounded-[50%] text-[10px] text-white w-[15px] h-[15px] flex items-center justify-center top-[0] right-[0] absolute",
   parent: "flex p-5 gap-5",
   boxShadow: "shadow-md shadow-slate-200 ",
+  userInfo: "mb-4 text-[14px] flex flex-row gap-2",
+  userInfoKey: "font-bold text-navItemColor",
+  userInfoValue: "font-light",
 };
 export default styles;

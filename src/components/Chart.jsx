@@ -1,13 +1,13 @@
-import styles from "./styles";
 import {
   AreaChart,
   Area,
   XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import PropTypes from "prop-types";
+
 const data = [
   { name: "January", Total: 4000 },
   { name: "February", Total: 1200 },
@@ -16,11 +16,11 @@ const data = [
   { name: "May", Total: 2300 },
   { name: "June", Total: 1600 },
 ];
-const Chart = () => {
+const Chart = ({ title }) => {
   return (
-    <div className={`${styles.boxShadow} flex flex-[2] flex-col p-[10px]`}>
+    <div className={` flex flex-[2] flex-col p-[10px]`}>
       <div className="flex font-semibold text-textColor text-[18px] mb-5">
-        Last 6 Months revenue
+        {title}
       </div>
       <ResponsiveContainer width="100%" height="100%" className="p-3">
         <AreaChart
@@ -36,7 +36,6 @@ const Chart = () => {
             </linearGradient>
           </defs>
           <XAxis dataKey="name" stroke="textColor" />
-          <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Area
@@ -51,5 +50,7 @@ const Chart = () => {
     </div>
   );
 };
-
+Chart.propTypes = {
+  title: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+};
 export default Chart;

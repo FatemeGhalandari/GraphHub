@@ -11,7 +11,7 @@ module.exports = {
         navItemColor: "#555",
         textColor: "#94a3b8",
         borderColor: "rgb(230,227,227)",
-        darkGreen: "#166534",
+        darkGreen: "#15803d",
         green: "#16a34a",
         lightGreen: "#ecfccb",
         dimGray: "#e5e5e5",

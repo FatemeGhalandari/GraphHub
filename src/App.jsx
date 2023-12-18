@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import List from "./pages/List";
 import Single from "./pages/Single";
 import New from "./pages/New";
+import { productInputs, userInputs } from "./components/formSource";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,12 +19,18 @@ const router = createBrowserRouter(
       <Route path="users">
         <Route index element={<List />} />
         <Route path=":userId" element={<Single />} />
-        <Route path="new" element={<New />} />
+        <Route
+          path="new"
+          element={<New inputs={userInputs} title="Add New User" />}
+        />
       </Route>
-      <Route path="users">
+      <Route path="products">
         <Route index element={<List />} />
         <Route path=":productId" element={<Single />} />
-        <Route path="new" element={<New />} />
+        <Route
+          path="new"
+          element={<New inputs={productInputs} title="Add New Product" />}
+        />
       </Route>
     </Route>
   )

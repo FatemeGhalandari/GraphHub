@@ -21,6 +21,7 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 export {
   DashboardIcon,
   PersonIcon,
@@ -45,4 +46,5 @@ export {
   AccountBalanceWalletIcon,
   MoreVertIcon,
   KeyboardArrowDownIcon,
+  DriveFolderUploadIcon,
 };

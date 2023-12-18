@@ -5,20 +5,28 @@ import styles from "../components/styles";
 import { DriveFolderUploadIcon } from "../components/icons";
 import Box from "@mui/material/Box";
 import SendIcon from "@mui/icons-material/Send";
+import PropTypes from "prop-types";
+import { useState } from "react";
 
-const New = () => {
+const New = ({ inputs, title }) => {
+  const [file, setFile] = useState("");
+
   return (
     <div className="flex flex-row w-[100%]">
       <Sidebar />
       <div className="flex-[6]">
         <Navbar />
         <div className={`${styles.parent} ${styles.boxShadow} m-5`}>
-          <h1 className="text-textColor text-[20px] font-bold">Add New User</h1>
+          <h1 className="text-textColor text-[20px] font-bold">{title}</h1>
         </div>
-        <div className={`${styles.parent}  ${styles.boxShadow} m-5`}>
-          <div className="flex-[1]">
+        <div className={`${styles.parent}  ${styles.boxShadow}`}>
+          <div className="flex-[1] m-2">
             <img
-              src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              }
               alt="newImage"
               className="w-[100px] h-[100px] rounded-[50%] m-auto object-cover"
             />
@@ -32,7 +40,12 @@ const New = () => {
                 </h2>
                 <DriveFolderUploadIcon className="text-[#BBBBBB]" />
               </label>
-              <input type="file" id="file" style={{ display: "none" }} />
+              <input
+                type="file"
+                id="file"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             </div>
           </div>
           <div className="flex-[2] ">
@@ -43,62 +56,25 @@ const New = () => {
                   m: 2,
                   width: "40%",
                   justifyContent: "space-between",
+                  height: "40px",
                 },
               }}
               noValidate
               autoComplete="off"
             >
               <div>
-                <TextField
-                  required
-                  id="Username"
-                  label="Username"
-                  placeholder="john_smith"
-                  variant="filled"
-                />
-                <TextField
-                  required
-                  id="Full Name"
-                  label="Full Name"
-                  placeholder="John Smith"
-                  variant="filled"
-                />
-                <TextField
-                  required
-                  id="Phone"
-                  label="Phone"
-                  placeholder="+1 234 567 890"
-                  variant="filled"
-                />
-                <TextField
-                  required
-                  id="Email"
-                  label="Email"
-                  placeholder="johnsmith@gmail.com"
-                  variant="filled"
-                />
-                <TextField
-                  required
-                  id="filled-password-input"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="filled"
-                />
-                <TextField
-                  id="Address"
-                  label="Address"
-                  placeholder="New York, Central road"
-                  variant="filled"
-                />
-                <TextField
-                  id="Country"
-                  label="Country"
-                  placeholder="USA"
-                  variant="filled"
-                />
+                {inputs.map((input) => (
+                  <TextField
+                    key={input.id}
+                    required
+                    id={input.id}
+                    label={input.label}
+                    placeholder={input.placeholder}
+                    variant="filled"
+                  />
+                ))}
               </div>
-              <div className="p-4">
+              <div className="p-4 mt-3">
                 <Button
                   variant="contained"
                   endIcon={<SendIcon />}
@@ -114,5 +90,8 @@ const New = () => {
     </div>
   );
 };
-
+New.propTypes = {
+  inputs: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+  title: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+};
 export default New;

@@ -13,13 +13,17 @@ import {
   PsychologyIcon,
 } from "./icons";
 import styles from "./styles";
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   return (
     <div className="flex flex-col flex-1 border-solid border-r-[0.5px] border-r-borderColor min-h-[100vh] bg-secondary">
       <div
         className={`${styles.borderBottom} h-[50px] flex items-center justify-center`}
       >
-        <span className={`${styles.logo}`}>GraphHub</span>
+        <Link to="/" className={`${styles.logo}`}>
+          GraphHub
+        </Link>
       </div>
       <div className="pl-[10px]">
         <ul className="list-none p-0 m-0">

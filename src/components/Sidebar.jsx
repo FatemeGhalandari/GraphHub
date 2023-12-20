@@ -33,14 +33,18 @@ const Sidebar = () => {
             <span className={`${styles.span}`}>Dashboard</span>
           </li>
           <p className={`${styles.paragraph}`}>Lists</p>
-          <li className={`${styles.li}`}>
-            <PersonIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Users</span>
-          </li>
-          <li className={`${styles.li}`}>
-            <InventoryIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Products</span>
-          </li>
+          <Link to="/users">
+            <li className={`${styles.li}`}>
+              <PersonIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Users</span>
+            </li>
+          </Link>
+          <Link to="/products">
+            <li className={`${styles.li}`}>
+              <InventoryIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Products</span>
+            </li>
+          </Link>
           <li className={`${styles.li}`}>
             <ShoppingCartIcon className={`${styles.icon}`} />
             <span className={`${styles.span}`}>Orders</span>

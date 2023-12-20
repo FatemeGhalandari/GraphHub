@@ -20,7 +20,7 @@ const New = ({ inputs, title }) => {
           <h1 className="text-textColor text-[20px] font-bold">{title}</h1>
         </div>
         <div className={`${styles.parent}  ${styles.boxShadow}`}>
-          <div className="flex-[1] m-2">
+          <div className="flex-[1] mt-3">
             <img
               src={
                 file

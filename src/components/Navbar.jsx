@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="flex flex-row ">
           <div className={`${styles.navItem}`}>
             <LanguageIcon className={`${styles.navIcons}`} />
-            <p className="ml-1">English</p>
+            <p className="ml-1 dark:text-textColor">English</p>
           </div>
           <div className={`${styles.navItem}`}>
             <DarkModeIcon className={`${styles.navIcons}`} />

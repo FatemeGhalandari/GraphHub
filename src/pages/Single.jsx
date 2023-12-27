@@ -7,7 +7,7 @@ import Tables from "../components/Table";
 
 const Single = () => {
   return (
-    <div className="flex flex-row w-[100%]">
+    <div className="flex flex-row w-[100%] dark:bg-[#222] dark:text-textColor">
       <Sidebar />
       <div className="flex-[6]">
         <Navbar />
@@ -23,7 +23,7 @@ const Single = () => {
                 className=" w-[100px] h-[100px] rounded-[50%] object-cover "
               />
               <div className="flex flex-col">
-                <h1 className="text-navItemColor mb-4 ">Jane Doe</h1>
+                <h1 className="text-navItemColor mb-4 dark:text-lightGreen">Jane Doe</h1>
                 <div className={styles.userInfo}>
                   <p className={styles.userInfoKey}>Email:</p>
                   <p className={styles.userInfoValue}>janedoe@gmail.com</p>

@@ -8,7 +8,7 @@ import styles from "../components/styles";
 
 const Home = () => {
   return (
-    <div className="flex flex-row w-[100%]">
+    <div className="flex flex-row w-[100%] dark:bg-[#222] dark:text-textColor">
       <Sidebar />
       <div className="flex-[6]">
         <Navbar />

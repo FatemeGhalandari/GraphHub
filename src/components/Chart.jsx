@@ -18,7 +18,7 @@ const data = [
 ];
 const Chart = ({ title }) => {
   return (
-    <div className={` flex flex-[2] flex-col p-[10px]`}>
+    <div className={` flex flex-[2] flex-col p-[10px] `}>
       <div className="flex font-semibold text-textColor text-[18px] mb-5">
         {title}
       </div>
@@ -31,12 +31,12 @@ const Chart = ({ title }) => {
         >
           <defs>
             <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="darkGreen" stopOpacity={0.8} />
+              <stop offset="5%" stopColor="green" stopOpacity={0.8} />
               <stop offset="95%" stopColor="green" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" stroke="textColor" />
-          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" stroke="darkGreen" />
+          <CartesianGrid strokeDasharray="3 3" stroke="lightGreen" />
           <Tooltip />
           <Area
             type="monotone"

@@ -9,8 +9,14 @@ import {
 } from "./icons";
 import styles from "./styles";
 import avatar from "../assets/avatar.svg";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+    document.documentElement.classList.toggle("dark", isDarkMode);
+  };
   return (
     <div
       className={`${styles.borderBottom} h-[50px] flex flex-row items-center text-[14px] text-textColor`}
@@ -32,7 +38,10 @@ const Navbar = () => {
             <p className="ml-1 dark:text-textColor">English</p>
           </div>
           <div className={`${styles.navItem}`}>
-            <DarkModeIcon className={`${styles.navIcons}`} />
+            <DarkModeIcon
+              className={`${styles.navIcons}`}
+              onClick={toggleDarkMode}
+            />
           </div>
           <div className={`${styles.navItem}`}>
             <FullscreenIcon className={`${styles.navIcons}`} />

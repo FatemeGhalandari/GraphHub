@@ -1,14 +1,21 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "./datatablSource";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Datatable = () => {
+  const [data, setData] = useState(userRows);
+  // handle delete function
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id));
+  
+  };
   const actions = [
     {
       field: "view",
       headerName: "Action",
       width: 200,
-      renderCell: () => {
+      renderCell: (params) => {
         return (
           <div className="flex items-center gap-4">
             <Link to="/users/test">
@@ -16,7 +23,10 @@ const Datatable = () => {
                 View
               </button>
             </Link>
-            <button className="border-[#d1d5db] border-2 text-[#dc2626] px-3 py-1 rounded-md">
+            <button
+              className="border-[#d1d5db] border-2 text-[#dc2626] px-3 py-1 rounded-md cursor-pointer"
+              onClick={() => handleDelete(params.row.id)}
+            >
               Delete
             </button>
           </div>
@@ -37,7 +47,7 @@ const Datatable = () => {
       </div>
       <div className="h-[400px] w-[100%]">
         <DataGrid
-          rows={userRows}
+          rows={data}
           columns={userColumns.concat(actions)}
           initialState={{
             pagination: {
@@ -51,12 +61,9 @@ const Datatable = () => {
             borderColor: "darkGreen",
             "& .MuiDataGrid-row:hover": {
               backgroundColor: "lightGreen",
-              color:"white"
+              color: "white",
             },
             color: "GrayText",
-            ":checked": {
-              backgroundColor: "red",
-            },
           }}
         />
       </div>

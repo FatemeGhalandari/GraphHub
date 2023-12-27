@@ -17,7 +17,7 @@ const styles = {
   parent: "flex p-5 gap-5",
   boxShadow: "shadow-md shadow-slate-200 dark:shadow-navItemColor",
   userInfo: "mb-4 text-[14px] flex flex-row gap-2",
-  userInfoKey: "font-bold text-navItemColor",
-  userInfoValue: "font-light",
+  userInfoKey: "font-bold text-navItemColor dark:text-white",
+  userInfoValue: "font-light dark:text-textColor",
 };
 export default styles;

@@ -1,9 +1,8 @@
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import styles from "../components/styles";
 import { DriveFolderUploadIcon } from "../components/icons";
-import Box from "@mui/material/Box";
 import SendIcon from "@mui/icons-material/Send";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -12,14 +11,14 @@ const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
 
   return (
-    <div className="flex flex-row w-[100%]">
+    <div className="flex flex-row w-[100%] dark:bg-[#222] dark:text-textColor">
       <Sidebar />
       <div className="flex-[6]">
         <Navbar />
         <div className={`${styles.parent} ${styles.boxShadow} m-5`}>
           <h1 className="text-textColor text-[20px] font-bold">{title}</h1>
         </div>
-        <div className={`${styles.parent}  ${styles.boxShadow}`}>
+        <div className={`${styles.parent}  ${styles.boxShadow} m-5`}>
           <div className="flex-[1] mt-3">
             <img
               src={
@@ -48,42 +47,34 @@ const New = ({ inputs, title }) => {
               />
             </div>
           </div>
-          <div className="flex-[2] ">
-            <Box
-              component="form"
-              sx={{
-                "& .MuiTextField-root": {
-                  m: 2,
-                  width: "40%",
-                  justifyContent: "space-between",
-                  height: "40px",
-                },
-              }}
+          <div className="flex-[2] mt-3 ">
+            <form
               noValidate
               autoComplete="off"
+              className="flex flex-wrap flex-row justify-between gap-4 "
             >
-              <div>
-                {inputs.map((input) => (
-                  <TextField
-                    key={input.id}
-                    required
-                    id={input.id}
-                    label={input.label}
+              {inputs.map((input) => (
+                <div key={input.id} className="w-[40%] ">
+                  <label className="flex items-center gap-2">
+                    {input.label}
+                  </label>
+                  <input
+                    type={input.type}
                     placeholder={input.placeholder}
-                    variant="filled"
+                    className="w-[70%] p-[5px]  border-[2px] border-lightGreen border-solid dark:bg-transparent"
                   />
-                ))}
-              </div>
-              <div className="p-4 mt-3">
-                <Button
-                  variant="contained"
-                  endIcon={<SendIcon />}
-                  style={{ backgroundColor: "green", width: "150px" }}
-                >
-                  Send
-                </Button>
-              </div>
-            </Box>
+                </div>
+              ))}
+            </form>{" "}
+            <div className="mt-8">
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                style={{ backgroundColor: "green", width: "150px" }}
+              >
+                Send
+              </Button>
+            </div>
           </div>
         </div>
       </div>

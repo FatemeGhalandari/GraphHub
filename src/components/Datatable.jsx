@@ -26,8 +26,8 @@ const Datatable = () => {
   ];
   return (
     <div className=" w-[100%] p-5">
-      <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]  text-navItemColor">
-        <h1>Add New User</h1>
+      <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]  ">
+        <h1 className="text-navItemColor dark:text-textColor">Add New User</h1>
         <Link
           to="/users/new"
           className="text-[16px] border-[#d1d5db] border-2 text-green px-3 py-1 rounded-md "
@@ -35,17 +35,31 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
-      <DataGrid
-        rows={userRows}
-        columns={userColumns.concat(actions)}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+      <div className="h-[400px] w-[100%]">
+        <DataGrid
+          rows={userRows}
+          columns={userColumns.concat(actions)}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+          sx={{
+            border: 2,
+            borderColor: "darkGreen",
+            "& .MuiDataGrid-row:hover": {
+              backgroundColor: "lightGreen",
+              color:"white"
+            },
+            color: "GrayText",
+            ":checked": {
+              backgroundColor: "red",
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };

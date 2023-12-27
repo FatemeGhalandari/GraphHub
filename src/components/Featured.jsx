@@ -31,7 +31,7 @@ const Featured = () => {
         <p className="text-textColor font-semibold text-[18px]">
           Total sales made today
         </p>
-        <p className="text-[30px] text-black">$420</p>
+        <p className="text-[30px] text-black dark:text-white">$420</p>
         <p className="text-[13px] font-normal text-textColor text-center">
           Previous transactions processing. <br /> Last payments may not be
           included.

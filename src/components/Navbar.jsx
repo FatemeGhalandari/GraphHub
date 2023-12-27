@@ -9,17 +9,25 @@ import {
 } from "./icons";
 import styles from "./styles";
 import avatar from "../assets/avatar.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-    document.documentElement.classList.toggle("dark", isDarkMode);
-  };
+  let [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  // const toggleDarkMode = () => {
+  //   setIsDarkMode((prevMode) => !prevMode);
+  //   document.documentElement.classList.toggle("dark", isDarkMode);
+  // };
   return (
     <div
-      className={`${styles.borderBottom} h-[50px] flex flex-row items-center text-[14px] text-textColor`}
+      className={`${styles.borderBottom} h-[50px] flex flex-row items-center text-[14px] text-textColor dark:text-white dark:bg-[#222]`}
     >
       <div className="flex flex-row items-center px-[20px] justify-between w-[100%]">
         <div
@@ -40,7 +48,7 @@ const Navbar = () => {
           <div className={`${styles.navItem}`}>
             <DarkModeIcon
               className={`${styles.navIcons}`}
-              onClick={toggleDarkMode}
+              onClick={() => setDarkMode(!darkMode)}
             />
           </div>
           <div className={`${styles.navItem}`}>

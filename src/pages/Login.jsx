@@ -2,12 +2,36 @@ import { Button } from "@mui/material";
 import { EmailIcon, VpnKeyIcon } from "../components/icons";
 import styles from "../components/styles";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const nav = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        nav("/");
+      })
+      .catch((error) => {
+        setError(true);
+      });
+  };
   return (
     <div className="flex items-center justify-center h-[100vh]">
-      <form noValidate autoComplete="off" className={styles.loginForm}>
+      <form
+        noValidate
+        autoComplete="off"
+        className={styles.loginForm}
+        onSubmit={handleSubmit}
+      >
         <h2 className={styles.loginHeading}>User Login</h2>
         <div className="border-solid border-2 border-darkGreen flex flex-row items-center p-[3px]">
           <EmailIcon className={`${styles.navIcons} text-green m-2`} />
@@ -15,6 +39,7 @@ const Login = () => {
             type="email"
             placeholder="email"
             className={styles.loginInput}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="border-solid border-2 border-darkGreen flex flex-row items-center p-[3px] ">
@@ -23,6 +48,7 @@ const Login = () => {
             type="password"
             placeholder="password"
             className={styles.loginInput}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <Button

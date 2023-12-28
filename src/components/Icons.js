@@ -22,6 +22,8 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import EmailIcon from "@mui/icons-material/Email";
 export {
   DashboardIcon,
   PersonIcon,
@@ -47,4 +49,6 @@ export {
   MoreVertIcon,
   KeyboardArrowDownIcon,
   DriveFolderUploadIcon,
+  VpnKeyIcon,
+  EmailIcon,
 };

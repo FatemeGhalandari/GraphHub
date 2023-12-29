@@ -20,7 +20,7 @@ const styles = {
   userInfoKey: "font-bold text-navItemColor dark:text-white",
   userInfoValue: "font-light dark:text-textColor",
   loginForm:
-    "flex flex-col gap-8 items-center justify-center border-2 border-solid border-darkGreen px-16 py-20 bg-lightGreen rounded-md",
+    "flex flex-col gap-8 items-center justify-between border-2 border-solid border-darkGreen px-8 py-16 rounded-md",
   loginHeading: "text-[20px] font-bold text-navItemColor",
   loginInput:
     "outline-none bg-transparent text-[15px]  w-[300px] h-[40px] border-l-2 border-borderColor pl-2",

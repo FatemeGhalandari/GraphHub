@@ -6,7 +6,10 @@ import { DriveFolderUploadIcon } from "../components/icons";
 import SendIcon from "@mui/icons-material/Send";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
 import { db } from "../firebase";
 
 const New = ({ inputs, title }) => {
@@ -15,14 +18,20 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const data = {
-      title: e.target[0].value,
-      description: e.target[1].value,
-      price: e.target[2].value,
-      image: file,
-      createdAt: Timestamp.fromDate(new Date()),
-    };
-    await setDoc(doc(db, "products", data.title), data);
+    try {
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      setDoc(doc(db, "users", res.user.uid), {
+        ...data,
+        timeStamp: serverTimestamp(),
+      });
+      console.log("done");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInput = async (e) => {
@@ -30,7 +39,6 @@ const New = ({ inputs, title }) => {
     const value = e.target.value;
     setData({ ...data, [id]: value });
   };
-  console.log(data);
 
   return (
     <div className="flex flex-row w-[100%] dark:bg-[#222] dark:text-textColor">
@@ -90,8 +98,7 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-            </form>
-            <div className="mt-8">
+
               <Button
                 type="submit"
                 variant="contained"
@@ -100,7 +107,7 @@ const New = ({ inputs, title }) => {
               >
                 Send
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

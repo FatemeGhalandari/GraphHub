@@ -14,14 +14,14 @@ const Login = () => {
 
   const { dispatch } = useContext(AuthContext);
 
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        nav("/");
+        navigate("/");
       })
       .catch((error) => {
         setError(true);

@@ -6,9 +6,31 @@ import { DriveFolderUploadIcon } from "../components/icons";
 import SendIcon from "@mui/icons-material/Send";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+  const [data, setData] = useState({});
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    const data = {
+      title: e.target[0].value,
+      description: e.target[1].value,
+      price: e.target[2].value,
+      image: file,
+      createdAt: Timestamp.fromDate(new Date()),
+    };
+    await setDoc(doc(db, "products", data.title), data);
+  };
+
+  const handleInput = async (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+    setData({ ...data, [id]: value });
+  };
+  console.log(data);
 
   return (
     <div className="flex flex-row w-[100%] dark:bg-[#222] dark:text-textColor">
@@ -51,7 +73,8 @@ const New = ({ inputs, title }) => {
             <form
               noValidate
               autoComplete="off"
-              className="flex flex-wrap flex-row justify-between gap-4 "
+              className="flex flex-wrap flex-row justify-between gap-4"
+              onSubmit={handleAdd}
             >
               {inputs.map((input) => (
                 <div key={input.id} className="w-[40%] ">
@@ -59,15 +82,18 @@ const New = ({ inputs, title }) => {
                     {input.label}
                   </label>
                   <input
+                    id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
-                    className="w-[70%] p-[5px]  border-[2px] border-lightGreen border-solid dark:bg-transparent"
+                    className="w-[70%] p-[5px] border-[2px] border-lightGreen border-solid dark:bg-transparent"
+                    onChange={handleInput}
                   />
                 </div>
               ))}
-            </form>{" "}
+            </form>
             <div className="mt-8">
               <Button
+                type="submit"
                 variant="contained"
                 endIcon={<SendIcon />}
                 style={{ backgroundColor: "green", width: "150px" }}

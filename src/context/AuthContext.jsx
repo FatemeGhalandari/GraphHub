@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.currentUser));
-  }, [state.currentUser]);
+  }, [state.currentUser]); //whenever the current user changed, save the details to local storage
 
   return (
     <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>

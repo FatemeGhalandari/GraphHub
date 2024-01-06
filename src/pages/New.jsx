@@ -5,26 +5,67 @@ import styles from "../components/styles";
 import { DriveFolderUploadIcon } from "../components/icons";
 import SendIcon from "@mui/icons-material/Send";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-
-import { db } from "../firebase";
+import { auth, db, storage } from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setData((prev) => ({ ...prev, Image: downloadURL }));
+          });
+        }
+      );
+    };
+    file && uploadFile();
+  }, [file]);
+
+  const handleInput = async (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+    setData({ ...data, [id]: value });
+  };
 
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
-        data.email,
-        data.password
+        data.Email,
+        data.Password
       );
-      setDoc(doc(db, "users", res.user.uid), {
+      await setDoc(doc(db, "users", res.user.uid), {
         ...data,
         timeStamp: serverTimestamp(),
       });
@@ -32,12 +73,6 @@ const New = ({ inputs, title }) => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleInput = async (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
-    setData({ ...data, [id]: value });
   };
 
   return (
@@ -98,15 +133,16 @@ const New = ({ inputs, title }) => {
                   />
                 </div>
               ))}
-
-              <Button
-                type="submit"
-                variant="contained"
-                endIcon={<SendIcon />}
-                style={{ backgroundColor: "green", width: "150px" }}
-              >
-                Send
-              </Button>
+              <div className="mt-6 w-[150px]">
+                <Button
+                  type="submit"
+                  variant="contained"
+                  endIcon={<SendIcon />}
+                  style={{ backgroundColor: "green", width: "150px" }}
+                >
+                  Send
+                </Button>
+              </div>
             </form>
           </div>
         </div>

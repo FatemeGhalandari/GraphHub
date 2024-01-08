@@ -8,25 +8,25 @@ export const userColumns = [
       return (
         <div className="flex items-center">
           <img
-            src={params.row.img}
+            src={params.row.Image }
             alt="avatar"
             className="w-[32px] h-[32px] rounded-[50%] mr-5 object-cover"
           />
-          {params.row.username}
+          {params.row.FirstName + " " + params.row.LastName}
         </div>
       );
     },
   },
   {
-    field: "email",
+    field: "Email",
     headerName: "Email",
-    width: 230,
+    width: 130,
   },
 
   {
-    field: "age",
-    headerName: "Age",
-    width: 100,
+    field: "Phone",
+    headerName: "Phone",
+    width: 130,
   },
   {
     field: "status",

@@ -3,26 +3,47 @@ import { userColumns } from "./datatablSource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  // getDocs,
+  deleteDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      let tempData = [];
-      try {
-        const querySnapshot = await getDocs(collection(db, "users"));
+    // const getData = async () => {
+    //   let tempData = [];
+    //   try {
+    //     const querySnapshot = await onSnapshot(collection(db, "users"), (doc));
 
-        querySnapshot.forEach((doc) => {
+    //     querySnapshot.forEach((doc) => {
+    //       tempData.push({ id: doc.id, ...doc.data() });
+    //     });
+    //     setData(tempData);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // getData();
+
+    // realtime data
+    const unsubscribed = onSnapshot(collection(db, "users"), (snapshot) => {
+      let tempData = [];
+      snapshot.docs.forEach(
+        (doc) => {
           tempData.push({ id: doc.id, ...doc.data() });
-        });
-        setData(tempData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      setData(tempData);
+    });
+    return () => unsubscribed();
   }, []);
   console.log(data);
 

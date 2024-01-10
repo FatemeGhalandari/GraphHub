@@ -7,17 +7,55 @@ import {
 } from "../components/icons";
 import PropTypes from "prop-types";
 import styles from "./styles";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const Widget = ({ type }) => {
+  const [amount, setAmount] = useState(0);
+  const [diff, setDiff] = useState(0);
   let data;
-  const amount = 100;
-  const diff = 100;
+
+  useEffect(() => {
+    const getData = async () => {
+      const today = new Date();
+      const oneMonthAgo = new Date(new Date().setMonth(today.getMonth() - 1));
+      const twoMonthAgo = new Date(new Date().setMonth(today.getMonth() - 2));
+
+      const oneMonthAgoQuery = query(
+        collection(db, data.query),
+        where("timeStamp", "<=", today),
+        where("timeStamp", ">", oneMonthAgo)
+      );
+
+      const twoMonthAgoQuery = query(
+        collection(db, data.query),
+        where("timeStamp", "<=", oneMonthAgo),
+        where("timeStamp", ">", twoMonthAgo)
+      );
+
+      const oneMonthAgoData = await getDocs(oneMonthAgoQuery);
+      const twoMonthAgoData = await getDocs(twoMonthAgoQuery);
+
+      setAmount(oneMonthAgoData.docs.length - twoMonthAgoData.docs.length);
+
+      setDiff(
+        ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
+          twoMonthAgoData.docs.length) *
+          100
+      );
+    console.log("diff users", diff);
+    };
+    getData();
+  }, []);
+
   switch (type) {
     case "users":
       data = {
         title: "USERS",
         isMoney: false,
         link: "See all users",
+        query: "users",
         icon: (
           <PersonIcon className="self-end bg-[#e9d5ff] text-[#a855f7] p-1 text-[18px] rounded-md" />
         ),
@@ -43,11 +81,12 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
+    case "products":
       data = {
-        title: "BALANCE",
+        title: "PRODUCTS",
         isMoney: false,
         link: "See details",
+        query: "products",
         icon: (
           <AccountBalanceWalletIcon className=" self-end bg-[#fecaca] text-[#dc2626] p-1 text-[18px] rounded-md" />
         ),

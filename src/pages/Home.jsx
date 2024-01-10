@@ -14,9 +14,9 @@ const Home = () => {
         <Navbar />
         <div className={styles.parent}>
           <Widget type="users" />
+          <Widget type="products" />
           <Widget type="orders" />
           <Widget type="earnings" />
-          <Widget type="balance" />
         </div>
         <div className={`${styles.parent} `}>
           <Featured className="flex flex-[1]" />

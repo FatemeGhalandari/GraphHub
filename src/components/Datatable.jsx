@@ -13,25 +13,11 @@ import {
 
 const Datatable = () => {
   const [data, setData] = useState([]);
+  const [pdata, setpData] = useState([]);
 
-  useEffect(() => {
-    // const getData = async () => {
-    //   let tempData = [];
-    //   try {
-    //     const querySnapshot = await onSnapshot(collection(db, "users"), (doc));
-
-    //     querySnapshot.forEach((doc) => {
-    //       tempData.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setData(tempData);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // getData();
-
-    // realtime data
-    const unsubscribed = onSnapshot(collection(db, "users"), (snapshot) => {
+  // realtime data
+  const unsubscribed = async (collectionName, setDataFunc) => {
+    await onSnapshot(collection(db, collectionName), (snapshot) => {
       let tempData = [];
       snapshot.docs.forEach(
         (doc) => {
@@ -41,16 +27,37 @@ const Datatable = () => {
           console.log(error);
         }
       );
-      setData(tempData);
+      setDataFunc(tempData);
     });
-    return () => unsubscribed();
+  };
+
+  // const getData = async () => {
+  //   let tempData = [];
+  //   try {
+  //     const querySnapshot = await onSnapshot(collection(db, "users"), (doc));
+
+  //     querySnapshot.forEach((doc) => {
+  //       tempData.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setData(tempData);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // getData();
+  useEffect(() => {
+    unsubscribed("users", setData);
   }, []);
-  console.log(data);
+  useEffect(() => {
+    unsubscribed("products", setpData);
+  }, []);
+  console.log("user", data);
+  console.log("product", pdata);
 
   // handle delete function
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, collectionName) => {
     try {
-      await deleteDoc(doc(db, "users", id));
+      await deleteDoc(doc(db, collectionName, id));
       setData(data.filter((item) => item.id !== id));
     } catch (err) {
       console.log(err);
@@ -72,7 +79,7 @@ const Datatable = () => {
             </Link>
             <button
               className="border-[#d1d5db] border-2 text-[#dc2626] px-3 py-1 rounded-md cursor-pointer"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete((params.row.id),"users")}
             >
               Delete
             </button>
@@ -83,7 +90,7 @@ const Datatable = () => {
   ];
   return (
     <div className=" w-[100%] p-5">
-      <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]  ">
+      <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]">
         <h1 className="text-navItemColor dark:text-textColor">Add New User</h1>
         <Link
           to="/users/new"

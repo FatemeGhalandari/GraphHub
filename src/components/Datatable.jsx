@@ -1,5 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns } from "./datatablSource";
+// import { userColumns } from "./datatablSource";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
@@ -11,10 +12,9 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-const Datatable = () => {
+const Datatable = ({ collectionName, columns }) => {
   const [data, setData] = useState([]);
   const [pdata, setpData] = useState([]);
-
   // realtime data
   const unsubscribed = async (collectionName, setDataFunc) => {
     await onSnapshot(collection(db, collectionName), (snapshot) => {
@@ -46,21 +46,25 @@ const Datatable = () => {
   // };
   // getData();
   useEffect(() => {
-    unsubscribed("users", setData);
-  }, []);
-  useEffect(() => {
-    unsubscribed("products", setpData);
-  }, []);
-  console.log("user", data);
-  console.log("product", pdata);
+    unsubscribed(collectionName, setData);
+  }, [collectionName]);
 
   // handle delete function
   const handleDelete = async (id, collectionName) => {
-    try {
-      await deleteDoc(doc(db, collectionName, id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
+    if (collectionName === "users") {
+      try {
+        await deleteDoc(doc(db, collectionName, id));
+        setData(data.filter((item) => item.id !== id));
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (collectionName === "products") {
+      try {
+        await deleteDoc(doc(db, collectionName, id));
+        setpData(data.filter((item) => item.id !== id));
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -79,7 +83,7 @@ const Datatable = () => {
             </Link>
             <button
               className="border-[#d1d5db] border-2 text-[#dc2626] px-3 py-1 rounded-md cursor-pointer"
-              onClick={() => handleDelete((params.row.id),"users")}
+              onClick={() => handleDelete(params.row.id, { collectionName })}
             >
               Delete
             </button>
@@ -91,9 +95,11 @@ const Datatable = () => {
   return (
     <div className=" w-[100%] p-5">
       <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]">
-        <h1 className="text-navItemColor dark:text-textColor">Add New User</h1>
+        <h1 className="text-navItemColor dark:text-textColor">
+          Add New {collectionName}
+        </h1>
         <Link
-          to="/users/new"
+          to={`/${collectionName}/new`}
           className="text-[16px] border-[#d1d5db] border-2 text-green px-3 py-1 rounded-md "
         >
           Add New
@@ -102,7 +108,7 @@ const Datatable = () => {
       <div className="h-[400px] w-[100%]">
         <DataGrid
           rows={data}
-          columns={userColumns.concat(actions)}
+          columns={columns.concat(actions)}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
@@ -124,5 +130,8 @@ const Datatable = () => {
     </div>
   );
 };
-
+Datatable.propTypes = {
+  collectionName: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+  columns: PropTypes.any.isRequired, // Update 'any' with the actual type you expect
+};
 export default Datatable;

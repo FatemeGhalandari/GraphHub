@@ -51,24 +51,23 @@ export const userColumns = [
 export const productColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "product",
-    headerName: "Product",
+    field: "Title",
+    headerName: "Title",
     width: 230,
-    renderCell: (params) => {
-      return (
-        <div className="flex items-center">
-          <img
-            src={params.row.Image}
-            alt="avatar"
-            className="w-[32px] h-[32px] rounded-[50%] mr-5 object-cover"
-          />
-        </div>
-      );
-    },
   },
   {
     field: "Price",
     headerName: "Price",
-    width: 130,
+    width: 200,
+  },
+  {
+    field: "Category",
+    headerName: "Category",
+    width: 200,
+  },
+  {
+    field: "Brand",
+    headerName: "Brand",
+    width: 200,
   },
 ];

@@ -10,6 +10,7 @@ import styles from "./styles";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Widget = ({ type }) => {
   const [amount, setAmount] = useState(0);
@@ -44,10 +45,9 @@ const Widget = ({ type }) => {
           twoMonthAgoData.docs.length) *
           100
       );
-    console.log("diff users", diff);
     };
     getData();
-  }, []);
+  }, [data, diff]);
 
   switch (type) {
     case "users":
@@ -61,11 +61,22 @@ const Widget = ({ type }) => {
         ),
       };
       break;
+    case "products":
+      data = {
+        title: "PRODUCTS",
+        isMoney: false,
+        link: "See details",
+        query: "products",
+        icon: (
+          <AccountBalanceWalletIcon className=" self-end bg-[#fecaca] text-[#dc2626] p-1 text-[18px] rounded-md" />
+        ),
+      };
+      break;
     case "orders":
       data = {
         title: "ORDERS",
         isMoney: false,
-        link: "View all users",
+        link: "View all orders",
         icon: (
           <ShoppingCartIcon className=" self-end bg-[#bfdbfe] text-[#2563eb] p-1 text-[18px] rounded-md" />
         ),
@@ -78,17 +89,6 @@ const Widget = ({ type }) => {
         link: "View net earnings",
         icon: (
           <MonetizationOnIcon className=" self-end bg-[#fef08a] text-[#ca8a04] p-1 text-[18px] rounded-md" />
-        ),
-      };
-      break;
-    case "products":
-      data = {
-        title: "PRODUCTS",
-        isMoney: false,
-        link: "See details",
-        query: "products",
-        icon: (
-          <AccountBalanceWalletIcon className=" self-end bg-[#fecaca] text-[#dc2626] p-1 text-[18px] rounded-md" />
         ),
       };
       break;
@@ -105,9 +105,12 @@ const Widget = ({ type }) => {
         <p className="text-[28px] ">
           {data.isMoney && "$"} {amount}{" "}
         </p>
-        <p className="text-[13px] border-b-[1px] border-solid border-gray-300 w-max">
+        <Link
+          to={data.query}
+          className="text-[13px] border-b-[1px] border-solid border-gray-300 w-max"
+        >
           {data.link}
-        </p>
+        </Link>
       </div>
       <div className="flex flex-col justify-between">
         <div className="flex flex-row items-center text-[14px] text-green">

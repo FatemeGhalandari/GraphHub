@@ -34,38 +34,32 @@ export const userInputs = [
     type: "text",
     placeholder: "Elton St. 216 NewYork",
   },
-  
 ];
 
 export const productInputs = [
   {
-    id: 1,
+    id: "Title",
     label: "Title",
     type: "text",
     placeholder: "Apple Macbook Pro",
   },
   {
-    id: 2,
-    label: "Description",
-    type: "text",
-    placeholder: "Description",
-  },
-  {
-    id: 3,
-    label: "Category",
-    type: "text",
-    placeholder: "Computers",
-  },
-  {
-    id: 4,
+    id: "Price",
     label: "Price",
     type: "text",
     placeholder: "100",
   },
   {
-    id: 5,
-    label: "Stock",
+    id: "Category",
+    label: "Category",
     type: "text",
-    placeholder: "in stock",
+    placeholder: "Computers",
+  },
+
+  {
+    id: "Brand",
+    label: "Brand",
+    type: "text",
+    placeholder: "Lenovo",
   },
 ];

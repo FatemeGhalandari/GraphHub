@@ -1,6 +1,7 @@
 import {
   AccountBalanceWalletIcon,
   KeyboardArrowUpIcon,
+  KeyboardArrowDownIcon,
   MonetizationOnIcon,
   PersonIcon,
   ShoppingCartIcon,
@@ -26,13 +27,13 @@ const Widget = ({ type }) => {
       const oneMonthAgoQuery = query(
         collection(db, data.query),
         where("timeStamp", "<=", today),
-        where("timeStamp", ">", oneMonthAgo)
+        where("timeStamp", ">", oneMonthAgo),
       );
 
       const twoMonthAgoQuery = query(
         collection(db, data.query),
         where("timeStamp", "<=", oneMonthAgo),
-        where("timeStamp", ">", twoMonthAgo)
+        where("timeStamp", ">", twoMonthAgo),
       );
 
       const oneMonthAgoData = await getDocs(oneMonthAgoQuery);
@@ -43,7 +44,7 @@ const Widget = ({ type }) => {
       setDiff(
         ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
           twoMonthAgoData.docs.length) *
-          100
+          100,
       );
     };
     getData();
@@ -57,7 +58,7 @@ const Widget = ({ type }) => {
         link: "See all users",
         query: "users",
         icon: (
-          <PersonIcon className="self-end bg-[#e9d5ff] text-[#a855f7] p-1 text-[18px] rounded-md" />
+          <PersonIcon className="self-end rounded-md bg-[#e9d5ff] p-1 text-[18px] text-[#a855f7]" />
         ),
       };
       break;
@@ -68,7 +69,7 @@ const Widget = ({ type }) => {
         link: "See details",
         query: "products",
         icon: (
-          <AccountBalanceWalletIcon className=" self-end bg-[#fecaca] text-[#dc2626] p-1 text-[18px] rounded-md" />
+          <AccountBalanceWalletIcon className=" self-end rounded-md bg-[#fecaca] p-1 text-[18px] text-[#dc2626]" />
         ),
       };
       break;
@@ -78,7 +79,7 @@ const Widget = ({ type }) => {
         isMoney: false,
         link: "View all orders",
         icon: (
-          <ShoppingCartIcon className=" self-end bg-[#bfdbfe] text-[#2563eb] p-1 text-[18px] rounded-md" />
+          <ShoppingCartIcon className=" self-end rounded-md bg-[#bfdbfe] p-1 text-[18px] text-[#2563eb]" />
         ),
       };
       break;
@@ -88,7 +89,7 @@ const Widget = ({ type }) => {
         isMoney: true,
         link: "View net earnings",
         icon: (
-          <MonetizationOnIcon className=" self-end bg-[#fef08a] text-[#ca8a04] p-1 text-[18px] rounded-md" />
+          <MonetizationOnIcon className=" self-end rounded-md bg-[#fef08a] p-1 text-[18px] text-[#ca8a04]" />
         ),
       };
       break;
@@ -98,23 +99,27 @@ const Widget = ({ type }) => {
   }
   return (
     <div
-      className={`${styles.boxShadow} flex flex-1 justify-between p-2 rounded-lg h-[100px]`}
+      className={`${styles.boxShadow} flex h-[100px] flex-1 justify-between rounded-lg p-2`}
     >
       <div className="flex flex-col justify-between">
-        <p className="text-textColor text-[13px] uppercase">{data.title}</p>
+        <p className="text-[13px] uppercase text-textColor">{data.title}</p>
         <p className="text-[28px] ">
           {data.isMoney && "$"} {amount}{" "}
         </p>
         <Link
           to={data.query}
-          className="text-[13px] border-b-[1px] border-solid border-gray-300 w-max"
+          className="w-max border-b-[1px] border-solid border-gray-300 text-[13px]"
         >
           {data.link}
         </Link>
       </div>
       <div className="flex flex-col justify-between">
-        <div className="flex flex-row items-center text-[14px] text-green">
-          <KeyboardArrowUpIcon />
+        <div className="flex flex-row items-center text-[14px] ">
+          {diff <= 0 ? (
+            <KeyboardArrowDownIcon className="text-red-600" />
+          ) : (
+            <KeyboardArrowUpIcon className="text-green" />
+          )}
           <p>{diff}%</p>{" "}
         </div>
         {data.icon}

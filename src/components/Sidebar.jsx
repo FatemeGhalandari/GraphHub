@@ -33,16 +33,16 @@ const Sidebar = () => {
     }
   }, [lightMode]);
   return (
-    <div className="flex flex-col flex-1 border-solid border-r-[0.5px] border-r-borderColor dark:border-r-navItemColor min-h-[100vh] bg-secondary dark:bg-[#222] ">
+    <div className="flex min-h-[100vh] flex-1 flex-col border-r-[0.5px] border-solid border-r-borderColor bg-secondary dark:border-r-navItemColor dark:bg-[#222] ">
       <div
-        className={`${styles.borderBottom} h-[50px] flex items-center justify-center`}
+        className={`${styles.borderBottom} flex h-[50px] items-center justify-center`}
       >
         <Link to="/" className={`${styles.logo}`}>
           GraphHub
         </Link>
       </div>
       <div className="pl-[10px]">
-        <ul className="list-none p-0 m-0">
+        <ul className="m-0 list-none p-0">
           <p className={`${styles.paragraph}`}>Main</p>
           <li className={`${styles.li}`}>
             <DashboardIcon className={`${styles.icon}`} />
@@ -102,7 +102,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="flex items-center m-[10px]">
+      <div className="m-[10px] flex items-center">
         <div
           className={`${styles.colorOptions} bg-secondary`}
           onClick={() => setLightMode(!lightMode)}

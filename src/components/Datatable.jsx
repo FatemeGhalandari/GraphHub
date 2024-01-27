@@ -14,7 +14,7 @@ import {
 
 const Datatable = ({ collectionName, columns }) => {
   const [data, setData] = useState([]);
-  const [pdata, setpData] = useState([]);
+  // const [pdata, setpData] = useState([]);
   // realtime data
   const unsubscribed = async (collectionName, setDataFunc) => {
     await onSnapshot(collection(db, collectionName), (snapshot) => {
@@ -25,7 +25,7 @@ const Datatable = ({ collectionName, columns }) => {
         },
         (error) => {
           console.log(error);
-        }
+        },
       );
       setDataFunc(tempData);
     });
@@ -50,21 +50,12 @@ const Datatable = ({ collectionName, columns }) => {
   }, [collectionName]);
 
   // handle delete function
-  const handleDelete = async (id, collectionName) => {
-    if (collectionName === "users") {
-      try {
-        await deleteDoc(doc(db, collectionName, id));
-        setData(data.filter((item) => item.id !== id));
-      } catch (err) {
-        console.log(err);
-      }
-    } else if (collectionName === "products") {
-      try {
-        await deleteDoc(doc(db, collectionName, id));
-        setpData(data.filter((item) => item.id !== id));
-      } catch (err) {
-        console.log(err);
-      }
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, collectionName, id));
+      setData(data.filter((item) => item.id !== id));
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -77,12 +68,12 @@ const Datatable = ({ collectionName, columns }) => {
         return (
           <div className="flex items-center gap-4">
             <Link to="/users/test">
-              <button className="border-[#d1d5db] border-2 text-green px-3 py-1 rounded-md mr-3">
+              <button className="mr-3 rounded-md border-2 border-[#d1d5db] px-3 py-1 text-green">
                 View
               </button>
             </Link>
             <button
-              className="border-[#d1d5db] border-2 text-[#dc2626] px-3 py-1 rounded-md cursor-pointer"
+              className="cursor-pointer rounded-md border-2 border-[#d1d5db] px-3 py-1 text-[#dc2626]"
               onClick={() => handleDelete(params.row.id, { collectionName })}
             >
               Delete
@@ -94,13 +85,13 @@ const Datatable = ({ collectionName, columns }) => {
   ];
   return (
     <div className=" w-[100%] p-5">
-      <div className="flex items-center justify-between mb-2 w-[100%] text-[24px]">
+      <div className="mb-2 flex w-[100%] items-center justify-between text-[24px]">
         <h1 className="text-navItemColor dark:text-textColor">
           Add New {collectionName}
         </h1>
         <Link
           to={`/${collectionName}/new`}
-          className="text-[16px] border-[#d1d5db] border-2 text-green px-3 py-1 rounded-md "
+          className="rounded-md border-2 border-[#d1d5db] px-3 py-1 text-[16px] text-green "
         >
           Add New
         </Link>

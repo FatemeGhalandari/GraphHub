@@ -1,5 +1,5 @@
 import {
-  AccountBalanceWalletIcon,
+  InventoryIcon,
   KeyboardArrowUpIcon,
   KeyboardArrowDownIcon,
   MonetizationOnIcon,
@@ -69,7 +69,7 @@ const Widget = ({ type }) => {
         link: "See details",
         query: "products",
         icon: (
-          <AccountBalanceWalletIcon className=" self-end rounded-md bg-[#fecaca] p-1 text-[18px] text-[#dc2626]" />
+          <InventoryIcon className=" self-end rounded-md bg-[#fecaca] p-1 text-[18px] text-[#dc2626]" />
         ),
       };
       break;
@@ -78,6 +78,7 @@ const Widget = ({ type }) => {
         title: "ORDERS",
         isMoney: false,
         link: "View all orders",
+        query: "orders",
         icon: (
           <ShoppingCartIcon className=" self-end rounded-md bg-[#bfdbfe] p-1 text-[18px] text-[#2563eb]" />
         ),
@@ -88,6 +89,7 @@ const Widget = ({ type }) => {
         title: "EARNINGS",
         isMoney: true,
         link: "View net earnings",
+        query: "earnings",
         icon: (
           <MonetizationOnIcon className=" self-end rounded-md bg-[#fef08a] p-1 text-[18px] text-[#ca8a04]" />
         ),

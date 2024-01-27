@@ -7,7 +7,7 @@ import {
   StackedLineChartIcon,
   NotificationsIcon,
   HealthAndSafetyIcon,
-  LocalShippingIcon,
+  MonetizationOnIcon,
   InventoryIcon,
   ShoppingCartIcon,
   PsychologyIcon,
@@ -61,14 +61,18 @@ const Sidebar = () => {
               <span className={`${styles.span}`}>Products</span>
             </li>
           </Link>
-          <li className={`${styles.li}`}>
-            <ShoppingCartIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Orders</span>
-          </li>
-          <li className={`${styles.li}`}>
-            <LocalShippingIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Delivery</span>
-          </li>
+          <Link to="/orders">
+            <li className={`${styles.li}`}>
+              <ShoppingCartIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Orders</span>
+            </li>
+          </Link>
+          <Link to="/earnings">
+            <li className={`${styles.li}`}>
+              <MonetizationOnIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Earnings</span>
+            </li>
+          </Link>
           <p className={`${styles.paragraph}`}>Useful</p>
           <li className={`${styles.li}`}>
             <StackedLineChartIcon className={`${styles.icon}`} />

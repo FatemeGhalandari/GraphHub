@@ -63,3 +63,95 @@ export const productInputs = [
     placeholder: "Lenovo",
   },
 ];
+
+export const orderInputs = [
+  {
+    id: "Tracking ID",
+    label: "Tracking ID",
+    type: "text",
+    placeholder: "Tracking ID",
+  },
+  {
+    id: "Product",
+    label: "Product",
+    type: "text",
+    placeholder: "Product",
+  },
+  {
+    id: "Customer",
+    label: "Customer",
+    type: "text",
+    placeholder: "Customer",
+  },
+
+  {
+    id: "Date",
+    label: "Date",
+    type: "text",
+    placeholder: "Date",
+  },
+  {
+    id: "Amount",
+    label: "Amount",
+    type: "text",
+    placeholder: "Amount",
+  },
+  {
+    id: "Payment Method",
+    label: "Payment Method",
+    type: "text",
+    placeholder: "Payment Method",
+  },
+  {
+    id: "Status",
+    label: "Status",
+    type: "text",
+    placeholder: "Status",
+  },
+];
+
+export const earningInputs = [
+  {
+    id: "Tracking ID",
+    label: "Tracking ID",
+    type: "text",
+    placeholder: "Tracking ID",
+  },
+  {
+    id: "Product",
+    label: "Product",
+    type: "text",
+    placeholder: "Product",
+  },
+  {
+    id: "Customer",
+    label: "Customer",
+    type: "text",
+    placeholder: "Customer",
+  },
+
+  {
+    id: "Date",
+    label: "Date",
+    type: "text",
+    placeholder: "Date",
+  },
+  {
+    id: "Amount",
+    label: "Amount",
+    type: "text",
+    placeholder: "Amount",
+  },
+  {
+    id: "Payment Method",
+    label: "Payment Method",
+    type: "text",
+    placeholder: "Payment Method",
+  },
+  {
+    id: "Status",
+    label: "Status",
+    type: "text",
+    placeholder: "Status",
+  },
+];

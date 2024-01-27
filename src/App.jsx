@@ -10,7 +10,12 @@ import Home from "./pages/Home";
 import List from "./pages/List";
 import Single from "./pages/Single";
 import New from "./pages/New";
-import { productInputs, userInputs } from "./components/formSource";
+import {
+  productInputs,
+  userInputs,
+  orderInputs,
+  earningInputs,
+} from "./components/formSource";
 import PropTypes from "prop-types";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
@@ -84,8 +89,60 @@ const router = createBrowserRouter(
           }
         />
       </Route>
-    </Route>
-  )
+      <Route path="orders">
+        <Route
+          index
+          element={
+            <RequireAuth>
+              <List />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path=":orderId"
+          element={
+            <RequireAuth>
+              <Single />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="new"
+          element={
+            <RequireAuth>
+              <New inputs={orderInputs} title="Add New Inputs" />
+            </RequireAuth>
+          }
+        />
+      </Route>
+      <Route path="earnings">
+        <Route
+          index
+          element={
+            <RequireAuth>
+              <List />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path=":earningId"
+          element={
+            <RequireAuth>
+              <Single />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="new"
+          element={
+            <RequireAuth>
+              <New inputs={earningInputs} title="Add New earnings" />
+            </RequireAuth>
+          }
+        />
+      </Route>
+    </Route>,
+  ),
 );
 
 const App = () => {

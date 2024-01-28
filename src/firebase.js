@@ -30,4 +30,13 @@ export const storage = getStorage(firebase);
 //   method: "Cash",
 //   status: "Pending",
 // };
-// await addDoc(collection(db, "orders"), docData);
+
+// const docData = {
+//   name: "Bob Johnson",
+//   amount: 7820,
+//   pStatus: "Overdue",
+//   method: "Debit Card",
+//   status: "Completed",
+//   tType:"Referral"
+// };
+// await addDoc(collection(db, "earnings"), docData);

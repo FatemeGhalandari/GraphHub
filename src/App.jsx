@@ -19,6 +19,7 @@ import {
 import PropTypes from "prop-types";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import Stats from "./pages/Stats";
 
 const RequireAuth = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -141,6 +142,7 @@ const router = createBrowserRouter(
           }
         />
       </Route>
+      <Route path="stats" element={<Stats />}></Route>
     </Route>,
   ),
 );

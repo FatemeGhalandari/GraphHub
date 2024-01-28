@@ -41,11 +41,16 @@ const Widget = ({ type }) => {
 
       setAmount(oneMonthAgoData.docs.length - twoMonthAgoData.docs.length);
 
-      setDiff(
-        ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
-          twoMonthAgoData.docs.length) *
-          100,
-      );
+      if (twoMonthAgoData.docs.length > 0)
+        setDiff(
+          ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
+            twoMonthAgoData.docs.length) *
+            100,
+        );
+      else {
+        setDiff(0);
+      }
+      
     };
     getData();
   }, [data, diff]);

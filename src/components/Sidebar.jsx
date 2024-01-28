@@ -44,10 +44,12 @@ const Sidebar = () => {
       <div className="pl-[10px]">
         <ul className="m-0 list-none p-0">
           <p className={`${styles.paragraph}`}>Main</p>
-          <li className={`${styles.li}`}>
-            <DashboardIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Dashboard</span>
-          </li>
+          <Link to="/">
+            <li className={`${styles.li}`}>
+              <DashboardIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Dashboard</span>
+            </li>
+          </Link>
           <p className={`${styles.paragraph}`}>Lists</p>
           <Link to="/users">
             <li className={`${styles.li}`}>
@@ -74,10 +76,12 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className={`${styles.paragraph}`}>Useful</p>
-          <li className={`${styles.li}`}>
-            <StackedLineChartIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Stats</span>
-          </li>
+          <Link to="/stats">
+            <li className={`${styles.li}`}>
+              <StackedLineChartIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Stats</span>
+            </li>
+          </Link>
           <li className={`${styles.li}`}>
             <NotificationsIcon className={`${styles.icon}`} />
             <span className={`${styles.span}`}>Notification</span>
@@ -96,10 +100,12 @@ const Sidebar = () => {
             <span className={`${styles.span}`}>Settings</span>
           </li>
           <p className={`${styles.paragraph}`}>User</p>
-          <li className={`${styles.li}`}>
-            <AccountCircleIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Profile</span>
-          </li>
+          <Link to="/users/test">
+            <li className={`${styles.li}`}>
+              <AccountCircleIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Profile</span>
+            </li>
+          </Link>
           <li className={`${styles.li}`}>
             <LogoutIcon className={`${styles.icon}`} />
             <span className={`${styles.span}`}>Logout</span>

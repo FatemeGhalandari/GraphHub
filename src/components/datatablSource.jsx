@@ -36,7 +36,7 @@ export const userColumns = [
       return (
         <div
           className={`rounded-md p-2 ${
-            params.row.status === "active"
+            params.row.status === "Online"
               ? "bg-[#d1fae5] text-darkGreen"
               : "bg-[#fef9c3] text-[#eab308]"
           }`}

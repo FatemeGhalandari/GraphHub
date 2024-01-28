@@ -10,6 +10,7 @@ import {
 import styles from "./styles";
 import avatar from "../assets/avatar.svg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   let [darkMode, setDarkMode] = useState(false);
@@ -27,16 +28,16 @@ const Navbar = () => {
   // };
   return (
     <div
-      className={`${styles.borderBottom} h-[50px] flex flex-row items-center text-[14px] text-textColor dark:text-white dark:bg-[#222]`}
+      className={`${styles.borderBottom} flex h-[50px] flex-row items-center text-[14px] text-textColor dark:bg-[#222] dark:text-white`}
     >
-      <div className="flex flex-row items-center px-[20px] justify-between w-[100%]">
+      <div className="flex w-[100%] flex-row items-center justify-between px-[20px]">
         <div
           className={`${styles.fullBorder} flex flex-row items-center p-[3px] `}
         >
           <input
             type="text"
             placeholder="Search..."
-            className="border-none outline-none bg-transparent text-[13px]"
+            className="border-none bg-transparent text-[13px] outline-none"
           />
           <SearchIcon className={`${styles.navIcons}`} />
         </div>
@@ -65,13 +66,13 @@ const Navbar = () => {
           <div className={`${styles.navItem}`}>
             <FormatListBulletedIcon className={`${styles.navIcons}`} />
           </div>
-          <div className={`${styles.navItem}`}>
+          <Link to="/users/test" className={`${styles.navItem}`}>
             <img
               src={avatar}
               alt="avatar"
-              className={`${styles.navIcons} w-[30px] h-[30px] rounded-[50%]`}
+              className={`${styles.navIcons} h-[30px] w-[30px] rounded-[50%]`}
             />
-          </div>
+          </Link>
         </div>
       </div>
     </div>

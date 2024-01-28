@@ -18,14 +18,14 @@ const data = [
 ];
 const Chart = ({ title }) => {
   return (
-    <div className={` flex flex-[2] flex-col p-[10px] `}>
-      <div className="flex font-semibold text-textColor text-[18px] mb-5">
+    <div className="flex flex-[2] flex-col p-[10px]">
+      <div className="mb-5 flex text-[18px] font-semibold text-textColor">
         {title}
       </div>
       <ResponsiveContainer width="100%" height="100%" className="p-3">
         <AreaChart
           width={730}
-          height={250}
+          height={650}
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >

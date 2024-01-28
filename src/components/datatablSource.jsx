@@ -10,7 +10,7 @@ export const userColumns = [
           <img
             src={params.row.Image}
             alt="avatar"
-            className="w-[32px] h-[32px] rounded-[50%] mr-5 object-cover"
+            className="mr-5 h-[32px] w-[32px] rounded-[50%] object-cover"
           />
           {params.row.FirstName + " " + params.row.LastName}
         </div>
@@ -35,7 +35,7 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div
-          className={`p-2 rounded-md ${
+          className={`rounded-md p-2 ${
             params.row.status === "active"
               ? "bg-[#d1fae5] text-darkGreen"
               : "bg-[#fef9c3] text-[#eab308]"
@@ -53,7 +53,18 @@ export const productColumns = [
   {
     field: "Title",
     headerName: "Title",
-    width: 230,
+    width: 230,renderCell: (params) => {
+      return (
+        <div className="flex items-center">
+          <img
+            src={params.row.img}
+            alt="avatar"
+            className="mr-5 h-[32px] w-[32px] rounded-[50%] object-cover"
+          />
+          {params.row.Title}
+        </div>
+      );
+    },
   },
   {
     field: "Price",
@@ -69,5 +80,107 @@ export const productColumns = [
     field: "Brand",
     headerName: "Brand",
     width: 200,
+  },
+];
+
+export const orderColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "product",
+    headerName: "Product",
+    width: 230,
+    renderCell: (params) => {
+      return (
+        <div className="flex items-center">
+          <img
+            src={params.row.img}
+            alt="avatar"
+            className="mr-5 h-[32px] w-[32px] rounded-[50%] object-cover"
+          />
+          {params.row.product}
+        </div>
+      );
+    },
+  },
+  {
+    field: "customer",
+    headerName: "Customer",
+    width: 170,
+  },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 100,
+  },
+  {
+    field: "method",
+    headerName: "Payment Method",
+    width: 150,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 130,
+    renderCell: (params) => {
+      return (
+        <div
+          className={`rounded-md p-2 ${
+            params.row.status === "Completed"
+              ? "bg-[#d1fae5] text-darkGreen"
+              : "bg-[#fef9c3] text-[#eab308]"
+          }`}
+        >
+          {params.row.status}
+        </div>
+      );
+    },
+  },
+];
+
+export const earningColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 120,
+  },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 90,
+  },
+  {
+    field: "pStatus",
+    headerName: "Payment Status",
+    width: 130,
+  },
+  {
+    field: "method",
+    headerName: "Payment Method",
+    width: 150,
+  },
+
+  {
+    field: "tType",
+    headerName: "Transaction Type",
+    width: 150,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 130,
+    renderCell: (params) => {
+      return (
+        <div
+          className={`rounded-md p-2 ${
+            params.row.status === "Completed"
+              ? "bg-[#d1fae5] text-darkGreen"
+              : "bg-[#fef9c3] text-[#eab308]"
+          }`}
+        >
+          {params.row.status}
+        </div>
+      );
+    },
   },
 ];

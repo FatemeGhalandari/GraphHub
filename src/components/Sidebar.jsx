@@ -106,10 +106,12 @@ const Sidebar = () => {
               <span className={`${styles.span}`}>Profile</span>
             </li>
           </Link>
-          <li className={`${styles.li}`}>
-            <LogoutIcon className={`${styles.icon}`} />
-            <span className={`${styles.span}`}>Logout</span>
-          </li>
+          <Link to="/logout">
+            <li className={`${styles.li}`}>
+              <LogoutIcon className={`${styles.icon}`} />
+              <span className={`${styles.span}`}>Logout</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="m-[10px] flex items-center">

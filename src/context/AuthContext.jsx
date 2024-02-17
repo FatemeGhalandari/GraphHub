@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 // initial state
 const INITIAL_STATE = {
-  currentUser: JSON.parse(localStorage.getItem("user")) || null,
+  currentUser: JSON.parse(localStorage.getItem("user")) ,
 };
 
 // create context

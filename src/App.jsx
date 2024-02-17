@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 import Stats from "./pages/Stats";
+import Logout from "./pages/Logout";
 
 const RequireAuth = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -29,7 +30,8 @@ const RequireAuth = ({ children }) => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="login" element={<Login />} />
+      <Route path="login" element={<Login />}></Route>
+      <Route path="logout" element={<Logout />}></Route>
       <Route
         index
         element={

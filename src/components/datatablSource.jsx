@@ -20,7 +20,7 @@ export const userColumns = [
   {
     field: "Email",
     headerName: "Email",
-    width: 130,
+    width: 200,
   },
 
   {

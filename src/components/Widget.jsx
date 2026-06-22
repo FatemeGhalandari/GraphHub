@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { demoCounts } from "../data/demoData";
 
 const Widget = ({ type }) => {
   const [amount, setAmount] = useState(0);
@@ -19,6 +20,12 @@ const Widget = ({ type }) => {
   let data;
 
   useEffect(() => {
+    if (!db) {
+      setAmount(demoCounts[type]?.amount || 0);
+      setDiff(demoCounts[type]?.diff || 0);
+      return;
+    }
+
     const getData = async () => {
       const today = new Date();
       const oneMonthAgo = new Date(new Date().setMonth(today.getMonth() - 1));
@@ -36,24 +43,27 @@ const Widget = ({ type }) => {
         where("timeStamp", ">", twoMonthAgo),
       );
 
-      const oneMonthAgoData = await getDocs(oneMonthAgoQuery);
-      const twoMonthAgoData = await getDocs(twoMonthAgoQuery);
+      try {
+        const oneMonthAgoData = await getDocs(oneMonthAgoQuery);
+        const twoMonthAgoData = await getDocs(twoMonthAgoQuery);
 
-      setAmount(oneMonthAgoData.docs.length - twoMonthAgoData.docs.length);
+        setAmount(oneMonthAgoData.docs.length - twoMonthAgoData.docs.length);
 
-      if (twoMonthAgoData.docs.length > 0)
-        setDiff(
-          ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
-            twoMonthAgoData.docs.length) *
-            100,
-        );
-      else {
-        setDiff(0);
+        if (twoMonthAgoData.docs.length > 0)
+          setDiff(
+            ((oneMonthAgoData.docs.length - twoMonthAgoData.docs.length) /
+              twoMonthAgoData.docs.length) *
+              100,
+          );
+        else {
+          setDiff(0);
+        }
+      } catch (error) {
+        console.log(error);
       }
-      
     };
     getData();
-  }, [data, diff]);
+  }, [type]);
 
   switch (type) {
     case "users":

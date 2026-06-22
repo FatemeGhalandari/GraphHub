@@ -11,13 +11,14 @@ import {
   doc,
   onSnapshot,
 } from "firebase/firestore";
+import { demoCollections } from "../data/demoData";
 
 const Datatable = ({ collectionName, columns }) => {
   const [data, setData] = useState([]);
   // const [pdata, setpData] = useState([]);
   // realtime data
-  const unsubscribed = async (collectionName, setDataFunc) => {
-    await onSnapshot(collection(db, collectionName), (snapshot) => {
+  const unsubscribed = (collectionName, setDataFunc) => {
+    return onSnapshot(collection(db, collectionName), (snapshot) => {
       let tempData = [];
       snapshot.docs.forEach(
         (doc) => {
@@ -46,11 +47,21 @@ const Datatable = ({ collectionName, columns }) => {
   // };
   // getData();
   useEffect(() => {
-    unsubscribed(collectionName, setData);
+    if (!db) {
+      setData(demoCollections[collectionName] || []);
+      return undefined;
+    }
+
+    return unsubscribed(collectionName, setData);
   }, [collectionName]);
 
   // handle delete function
   const handleDelete = async (id) => {
+    if (!db) {
+      setData(data.filter((item) => item.id !== id));
+      return;
+    }
+
     try {
       await deleteDoc(doc(db, collectionName, id));
       setData(data.filter((item) => item.id !== id));

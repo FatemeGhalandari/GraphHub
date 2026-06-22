@@ -8,11 +8,12 @@ import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import { demoOrders } from "../data/demoData";
 
 const Tables = () => {
   const [data, setData] = useState([]);
-  const unsubscribed = async () => {
-    await onSnapshot(collection(db, "orders"), (snapshot) => {
+  const unsubscribed = () => {
+    return onSnapshot(collection(db, "orders"), (snapshot) => {
       let tempData = [];
       snapshot.docs.forEach(
         (doc) => {
@@ -26,7 +27,12 @@ const Tables = () => {
     });
   };
   useEffect(() => {
-    unsubscribed();
+    if (!db) {
+      setData(demoOrders);
+      return undefined;
+    }
+
+    return unsubscribed();
   }, []);
   return (
     <TableContainer component={Paper} className="dark:bg-[#222] ">

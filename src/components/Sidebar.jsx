@@ -11,7 +11,7 @@ import {
   InventoryIcon,
   ShoppingCartIcon,
   PsychologyIcon,
-} from "./icons";
+} from "./Icons";
 import styles from "./styles";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

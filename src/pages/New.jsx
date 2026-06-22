@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import styles from "../components/styles";
-import { DriveFolderUploadIcon } from "../components/icons";
+import { DriveFolderUploadIcon } from "../components/Icons";
 import SendIcon from "@mui/icons-material/Send";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";

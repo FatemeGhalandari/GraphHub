@@ -5,7 +5,7 @@ import {
   MonetizationOnIcon,
   PersonIcon,
   ShoppingCartIcon,
-} from "../components/icons";
+} from "../components/Icons";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { useEffect, useState } from "react";

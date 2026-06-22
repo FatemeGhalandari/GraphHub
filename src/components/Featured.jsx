@@ -2,7 +2,7 @@ import {
   MoreVertIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
-} from "./icons";
+} from "./Icons";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 const Featured = () => {

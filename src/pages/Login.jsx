@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { EmailIcon, VpnKeyIcon } from "../components/icons";
+import { EmailIcon, VpnKeyIcon } from "../components/Icons";
 import styles from "../components/styles";
 import { useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";

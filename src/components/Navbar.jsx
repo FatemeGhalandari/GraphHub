@@ -6,7 +6,7 @@ import {
   NotificationsIcon,
   ChatIcon,
   FormatListBulletedIcon,
-} from "./icons";
+} from "./Icons";
 import styles from "./styles";
 import avatar from "../assets/avatar.svg";
 import { useEffect, useState } from "react";

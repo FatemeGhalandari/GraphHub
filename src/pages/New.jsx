@@ -19,6 +19,10 @@ const New = ({ inputs, title }) => {
 
   useEffect(() => {
     const uploadFile = () => {
+      if (!storage) {
+        return;
+      }
+
       const fileName = new Date().getTime() + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -61,6 +65,12 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
+
+    if (!auth || !db) {
+      navigate(-1);
+      return;
+    }
+
     try {
       const res = await createUserWithEmailAndPassword(
         auth,

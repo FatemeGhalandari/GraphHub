@@ -21,16 +21,25 @@ import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 import Stats from "./pages/Stats";
 import Logout from "./pages/Logout";
+import { isDemoMode } from "./config/appMode";
 
 const RequireAuth = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
+
+  if (isDemoMode) {
+    return children;
+  }
+
   return currentUser ? children : <Navigate to="/login" />;
 };
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="login" element={<Login />}></Route>
+      <Route
+        path="login"
+        element={isDemoMode ? <Navigate to="/" replace /> : <Login />}
+      ></Route>
       <Route path="logout" element={<Logout />}></Route>
       <Route
         index

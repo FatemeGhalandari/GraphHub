@@ -17,6 +17,13 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(false);
+
+    if (!auth) {
+      setError(true);
+      return;
+    }
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -28,6 +35,7 @@ const Login = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="flex items-center justify-center h-[100vh] bg-lightGreen">
       <form
